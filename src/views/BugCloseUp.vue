@@ -48,14 +48,17 @@
           </div>
         </div>
       </div>
+      <div class="col">
+        <bug-note />
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
 <script>
   import ReportBug from "@/components/ReportBug.vue";
   import Bugs from "@/components/Bugs.vue";
+  import BugNote from "@/components/BugNote.vue";
 
   export default {
     name: 'Bug',
@@ -83,9 +86,12 @@
       }
     },
     methods: {
-      addNote(item) {
-        this.$store.dispatch('addNote', item)
+      addNote() {
+        this.$store.dispatch('addNote', this.newNote)
       }
+    },
+    components: {
+      BugNote,
     }
   }
 
