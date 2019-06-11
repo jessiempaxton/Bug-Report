@@ -12,18 +12,24 @@
         </tr>
       </thead>
       <tbody v-for="bug in bugs" :key="bug._id">
-        <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">
-          <tr>
-            <th scopt="row">1</th>
-            <td>{{ bug.closed }}</td>
-            <td>{{ bug.creator }}</td>
-            <td>{{ bug.title }}</td>
-            <td>{{ bug.title }}</td>
-          </tr>
-        </router-link>
+        <tr>
+          <!-- <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"> -->
+          <th scope="row">1</th>
+          <td>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.closed }}</router-link>
+          </td>
+          <td>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.creator }}</router-link>
+          </td>
+          <td>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.title }}</router-link>
+          </td>
+          <td>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.title }}</router-link>
+          </td>
+        </tr>
       </tbody>
     </table>
-  </div>
   </div>
 </template>
 
@@ -40,10 +46,6 @@
         return this.$store.state.bugs
       }
     }
-
-    // selectBug(id){
-
-    // }
   }
 </script>
 

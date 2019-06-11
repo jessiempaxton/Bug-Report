@@ -13,14 +13,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     bugs: [],
+    notes: [],
+    //notes
     bug: {}
   },
   mutations: {
+    //setnotes
+    setNotes(state, noteArr) {
+      state.notes = noteArr
+    },
     setBugs(state, id) {
       state.bugs = id
     },
     setBug(state, bug) {
       state.bug = bug
+    },
+    addNote(state, note) {
+      state.notes.push(note);
     }
   },
   actions: {
@@ -53,42 +62,25 @@ export default new Vuex.Store({
     },
     async addNote({ commit, dispatch }, payload) {
       try {
-        let res = await _api.put("bugs/" + payload.id + payload)
-        commit('getBug', res.data)
+        let res = await _api.post("bugs/" + payload.bugId + '/notes', payload)
+        // dispatch('setBug', payload.bugId)
+        // console.log(res)
+        commit('addNote', res.data.results)
       } catch (error) {
         console.error(error)
       }
     },
 
+    async getNotes({ commit, dispatch }, bugId) {
+      try {
+        let res = await _api.get("bugs/" + bugId + '/notes')
+        commit('setNotes', res.data.results)
+        // dispatch('setNotes', bugId)
+        //setnotes
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
-    createNote({ commit, dispatch }, payload) {
-      _api.post("", payload)
-        .then(res => {
-          dispatch('setBug')
-        })
-        .catch(err => console.error(err))
-    },
-
-    // async addNote({ commit, dispatch }, payload) {
-    //   try {
-    //     let res = await _api.post('bugs', payload)
-    //     router.push({ name: 'bugs', params: { id: res.data._id } })
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // },
-
-    //below is from the food-is-fun addFood
-    //   addNote({ commit, dispatch, state }, data) {
-    //     state.bug.push(data)
-    //     _api(state.bug._id, state.bug)
-    //       .then(res => {
-    //         dispatch('getBug', state.bug._id)
-    //       })
-    //       .catch(err => {
-    //         state.bug.pop()
-    //       })
-    //   }
-    // }
   }
 })

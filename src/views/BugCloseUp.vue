@@ -3,16 +3,15 @@
     <div class="row">
       <div class="col-12">
         <h1>BUG DETAILS</h1>
-        <div class="card border-danger mb-3 justify-content-center" style="width: 100vh;">
-          <div class="card-header bg-transparent border-danger">Author: {{bug.creator}}</div>
-          <div class="card-body text-success">
+        <div class="card border-dark mb-3 justify-content-center" style="width: 100vh;">
+          <div class="card-header bg-transparent border-dark">Author: {{bug.creator}}</div>
+          <div class="card-body text-dark">
             <h5 class="card-title">{{bug.title}}</h5>
             <p class="card-text">{{bug.description}}
             </p>
           </div>
-          <div class="card-footer bg-transparent border-danger">
+          <div class="card-footer bg-transparent border-dark">
             <button class="btn btn-danger" data-toggle="modal" data-target="#noteModal">Add Note</button>
-            <button>Mark Bug as Resolved</button>
           </div>
         </div>
       </div>
@@ -33,10 +32,12 @@
                 <input required v-model="newNote.creator" type="text" id="defaultFormNameModalEx"
                   class="form-control form-control-sm">
                 <br>
-                <label for="defaultFormTitleModalEx">Note Title</label>
-                <input required v-model="newNote.title" type="text" id="defaultFormTitleModalEx"
-                  class="form-control form-control-sm">
-                <br>
+                <select v-model="newNote.flagged">
+                  <option value="pending" selected>Pending</option>
+                  <option value="completed">Completed</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+                <br />
                 <label for="defaultFormMessageModalEx">Note Description</label>
                 <textarea required v-model="newNote.content" type="text" id="defaultFormMessageModalEx"
                   class="md-textarea form-control"></textarea>
@@ -49,7 +50,7 @@
         </div>
       </div>
       <div class="col">
-        <bug-note />
+        <bug-note v-for="note in notes" :note="note" />
       </div>
     </div>
   </div>
@@ -66,16 +67,16 @@
 
     mounted() {
       this.$store.dispatch("setBug", this.id)
+      this.$store.dispatch("getNotes", this.id)
     },
 
     data() {
       return {
         newNote: {
-          title: "",
           content: "",
           creator: "",
-          flagged: "",
-
+          flagged: "pending",
+          bugId: this.id
         }
       };
     },
@@ -83,6 +84,9 @@
     computed: {
       bug() {
         return this.$store.state.bug
+      },
+      notes() {
+        return this.$store.state.notes
       }
     },
     methods: {
