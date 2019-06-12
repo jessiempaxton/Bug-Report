@@ -53,8 +53,8 @@
           </div>
         </div>
       </div>
-      <bug-note v-for="note in notes" :note="note" />
     </div>
+    <bug-note v-for="note in notes" :note="note" />
   </div>
 </template>
 
