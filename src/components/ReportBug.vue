@@ -51,6 +51,7 @@
           creator: "",
           description: "",
           title: "",
+          closed: Boolean,
         }
       };
     },
@@ -65,8 +66,5 @@
 </script>
 
 <style>
-  /* //scoped */
-  /* .btn {
-    align-items: center;
-  } */
+
 </style>

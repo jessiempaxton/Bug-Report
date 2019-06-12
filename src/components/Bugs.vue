@@ -4,19 +4,19 @@
     <table class="table table-dark table-hover">
       <thead>
         <tr>
-          <th scope="col">Number</th>
+          <th scope="col">#</th>
           <th scope="col">Status</th>
-          <th scope="col">Author</th>
+          <th scope=" col">Author</th>
           <th scope="col">Title</th>
           <th scope="col">Date Opened/Closed</th>
         </tr>
       </thead>
-      <tbody v-for="bug in bugs" :key="bug._id">
+      <tbody v-for="(bug, index) in bugs" :key="bug._id">
         <tr>
-          <!-- <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"> -->
-          <th scope="row">1</th>
+          <th scope="row">{{index+1}}</th>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.closed }}</router-link>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.closed ? 'closed' : 'open' }}
+            </router-link>
           </td>
           <td>
             <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.creator }}</router-link>

@@ -14,7 +14,6 @@ export default new Vuex.Store({
   state: {
     bugs: [],
     notes: [],
-    //notes
     bug: {}
   },
   mutations: {
@@ -31,7 +30,11 @@ export default new Vuex.Store({
     addNote(state, note) {
       state.notes.push(note);
     }
+    // removeNote(state, id) {
+    //   state.notes.splice(state.notes.findIndex(n => n._id == id), 1)
+    // }
   },
+
   actions: {
     async setBug({ commit, dispatch }, id) {
       try {
@@ -60,11 +63,10 @@ export default new Vuex.Store({
         console.error(error)
       }
     },
+
     async addNote({ commit, dispatch }, payload) {
       try {
         let res = await _api.post("bugs/" + payload.bugId + '/notes', payload)
-        // dispatch('setBug', payload.bugId)
-        // console.log(res)
         commit('addNote', res.data.results)
       } catch (error) {
         console.error(error)
@@ -80,7 +82,19 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error)
       }
-    }
+    },
 
+    deleteNote({ commit, dispatch }, note) {
+      _api.delete('/bugs/' + note.bug + '/notes/' + note._id)
+        // .then(() => commit('removeNote'))
+        .then(() => dispatch('getNotes', note.bug))
+    },
+
+    async resolveBug({ commit, dispatch }, payload) {
+      try {
+        let res = await _api.delete('bugs/' + payload._id)
+        dispatch('getNotes', payload._id)
+      } catch (e) { console.error(e) }
+    },
   }
 })

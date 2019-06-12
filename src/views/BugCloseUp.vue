@@ -2,16 +2,20 @@
   <div class="details container-fluid">
     <div class="row">
       <div class="col-12">
+        <router-link :to="{name: 'home'}">Return to Bug Log</router-link>
         <h1>BUG DETAILS</h1>
         <div class="card border-dark mb-3 justify-content-center" style="width: 100vh;">
           <div class="card-header bg-transparent border-dark">Author: {{bug.creator}}</div>
           <div class="card-body text-dark">
             <h5 class="card-title">{{bug.title}}</h5>
-            <p class="card-text">{{bug.description}}
-            </p>
+            <h5 class="card-title">{{bug.closed ? 'closed' : 'open'}}</h5>
+            <p class=" card-text">{{bug.description}}</p>
           </div>
+
           <div class="card-footer bg-transparent border-dark">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#noteModal">Add Note</button>
+            <button class="btn btn-danger" @click="resolveBug(bug)" :disabled="bug.closed">Resolve Bug</button>
+            <button class="btn btn-danger offset-1" data-toggle="modal" data-target="#noteModal"
+              :disabled="bug.closed">Add Note</button>
           </div>
         </div>
       </div>
@@ -49,9 +53,8 @@
           </div>
         </div>
       </div>
-      <div class="col">
-        <bug-note v-for="note in notes" :note="note" />
-      </div>
+      <bug-note v-for="note in notes" :note="note" />
+      <!-- (v-if=" bug.closed ? 'closed' : 'open' ) -->
     </div>
   </div>
 </template>
@@ -92,6 +95,10 @@
     methods: {
       addNote() {
         this.$store.dispatch('addNote', this.newNote)
+      },
+
+      resolveBug(bug) {
+        this.$store.dispatch('resolveBug', bug)
       }
     },
     components: {
@@ -100,3 +107,10 @@
   }
 
 </script>
+
+<style>
+  /* delete request like the delete nuuuuute
+build url string like that
+check documentation
+You won't need note id when closing the bug but bug id */
+</style>

@@ -1,16 +1,23 @@
 <template>
-  <div class="bugNote">
-    <form>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h6 class="card-title">{{ note.creator }} </h6>
-          <p class="card-text">{{ note.content }}</p>
-        </div>
-        <div class="card-body">
-          <button type="submit">Delete Note?</button>
+  <div class="notes container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <div class="bugNote">
+          <form>
+            <div class="card">
+              <div class="card-body">
+                <h6 class="card-title">{{ note.creator }} </h6>
+                <p class="card-text">{{ note.content }}</p>
+                <p class="card-text">{{ note.flagged }}</p>
+              </div>
+              <div class="card-body">
+                <button type="btn btn-dager" @click="deleteNote(note)">Delete Note?</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -20,15 +27,18 @@
     props: ['note'],
     data() {
       return {
-        // newNote: {
-        //   title: "",
-        //   content: "",
-        //   creator: "",
-        //   flagged: "",
-        // }
       };
     },
+
     methods: {
+      deleteNote(note) {
+        debugger
+        this.$store.dispatch("deleteNote", note)
+      }
     }
   }
 </script>
+
+<style scoped>
+
+</style>
