@@ -55,7 +55,6 @@
         }
       };
     },
-    //computed:
     methods: {
       createBug() {
         this.$store.dispatch('createBug', this.newBug)

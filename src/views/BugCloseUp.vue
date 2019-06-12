@@ -54,7 +54,6 @@
         </div>
       </div>
       <bug-note v-for="note in notes" :note="note" />
-      <!-- (v-if=" bug.closed ? 'closed' : 'open' ) -->
     </div>
   </div>
 </template>
@@ -109,8 +108,5 @@
 </script>
 
 <style>
-  /* delete request like the delete nuuuuute
-build url string like that
-check documentation
-You won't need note id when closing the bug but bug id */
+
 </style>

@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  // @ is an alias to /src
   import ReportBug from "@/components/ReportBug.vue";
   import Bugs from "@/components/Bugs.vue"
 
@@ -24,7 +23,6 @@
         return this.$store.state.bug;
       },
     },
-    //methods:
     components: {
       Bugs,
       ReportBug

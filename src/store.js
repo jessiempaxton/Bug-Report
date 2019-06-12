@@ -30,9 +30,6 @@ export default new Vuex.Store({
     addNote(state, note) {
       state.notes.push(note);
     }
-    // removeNote(state, id) {
-    //   state.notes.splice(state.notes.findIndex(n => n._id == id), 1)
-    // }
   },
 
   actions: {
@@ -40,37 +37,27 @@ export default new Vuex.Store({
       try {
         let res = await _api.get("/bugs/" + id)
         commit('setBug', res.data.results)
-      }
-      catch (e) {
-        console.error(e)
-      }
+      } catch (e) { console.error(e) }
     },
     async getBugs({ commit, dispatch }) {
       try {
         let res = await _api.get('bugs')
         console.log(res)
         commit('setBugs', res.data.results)
-      }
-      catch (e) {
-        console.error(e)
-      }
+      } catch (e) { console.error(e) }
     },
     async createBug({ commit, dispatch }, data) {
       try {
         let res = await _api.post('bugs', data)
         router.push({ name: 'bugs', params: { id: res.data.id } })
-      } catch (error) {
-        console.error(error)
-      }
+      } catch (error) { console.error(error) }
     },
 
     async addNote({ commit, dispatch }, payload) {
       try {
         let res = await _api.post("bugs/" + payload.bugId + '/notes', payload)
         commit('addNote', res.data.results)
-      } catch (error) {
-        console.error(error)
-      }
+      } catch (error) { console.error(error) }
     },
 
     async getNotes({ commit, dispatch }, bugId) {
@@ -79,9 +66,7 @@ export default new Vuex.Store({
         commit('setNotes', res.data.results)
         // dispatch('setNotes', bugId)
         //setnotes
-      } catch (error) {
-        console.error(error)
-      }
+      } catch (error) { console.error(error) }
     },
 
     deleteNote({ commit, dispatch }, note) {
