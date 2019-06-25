@@ -64,14 +64,11 @@ export default new Vuex.Store({
       try {
         let res = await _api.get("bugs/" + bugId + '/notes')
         commit('setNotes', res.data.results)
-        // dispatch('setNotes', bugId)
-        //setnotes
       } catch (error) { console.error(error) }
     },
 
     deleteNote({ commit, dispatch }, note) {
       _api.delete('/bugs/' + note.bug + '/notes/' + note._id)
-        // .then(() => commit('removeNote'))
         .then(() => dispatch('getNotes', note.bug))
     },
 

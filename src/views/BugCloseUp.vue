@@ -11,7 +11,6 @@
             <h5 class="card-title">{{bug.closed ? 'closed' : 'open'}}</h5>
             <p class=" card-text">{{bug.description}}</p>
           </div>
-
           <div class="card-footer bg-transparent border-dark">
             <button class="btn btn-danger" @click="resolveBug(bug)" :disabled="bug.closed">Resolve Bug</button>
             <button class="btn btn-danger offset-1" data-toggle="modal" data-target="#noteModal"
@@ -19,6 +18,7 @@
           </div>
         </div>
       </div>
+
       <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
         <div class="modal-dialog cascading-modal" role="document">
