@@ -58,6 +58,8 @@
     methods: {
       createBug() {
         this.$store.dispatch('createBug', this.newBug)
+        $("#bugModal").modal("hide");
+        $(".modal-backdrop").remove();
       },
     }
   }

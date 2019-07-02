@@ -13,27 +13,32 @@
       </thead>
       <tbody v-for="(bug, index) in bugs" :key="bug._id">
         <tr>
-          <th scope="row">{{ index+1 }}</th>
+          <th scope="row">
+            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}" style="color: white">{{ index+1 }}
+            </router-link>
+          </th>
           <td>
-            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}">{{ bug.title }}</router-link>
+            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}" style="color: white">{{ bug.title }}
+            </router-link>
           </td>
           </td>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">{{ bug.creator }}</router-link>
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}" style="color: white">{{ bug.creator }}
+            </router-link>
           </td>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"
+              :class="[bug.closed ? 'darkgrey' : 'green']" class="link">
               {{ bug.closed ? 'closed' : 'open' }}
             </router-link>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}">
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}" style="color: white">
               {{ new Date(bug.createdAt).toLocaleDateString() }}</router-link>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- v-if="{'bug.closed= closed' ? 'color= red' : 'color= green'}" -->
 </template>
 
 
@@ -54,4 +59,15 @@
 
 <style>
   /* .router-link {} */
+  .darkgrey {
+    color: darkgrey;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .link:hover {
+    color: white;
+  }
 </style>

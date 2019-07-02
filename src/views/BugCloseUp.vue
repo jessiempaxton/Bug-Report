@@ -8,7 +8,7 @@
           <div class="card-header bg-transparent border-dark">Author: {{bug.creator}}</div>
           <div class="card-body text-dark">
             <h5 class="card-title">{{bug.title}}</h5>
-            <h5 class="card-title">{{bug.closed ? 'closed' : 'open'}}</h5>
+            <h5 class="card-title" :class="[bug.closed ? 'black' : 'green']">{{bug.closed ? 'closed' : 'open'}}</h5>
             <p class=" card-text">{{bug.description}}</p>
           </div>
           <div class="card-footer bg-transparent border-dark">
@@ -70,6 +70,7 @@
     mounted() {
       this.$store.dispatch("setBug", this.id)
       this.$store.dispatch("getNotes", this.id)
+
     },
 
     data() {
@@ -89,6 +90,9 @@
       },
       notes() {
         return this.$store.state.notes
+      },
+      bugs() {
+        return this.$store.state.bugs
       }
     },
     methods: {
@@ -108,5 +112,8 @@
 </script>
 
 <style>
-
+  .details {
+    background-color: darkgrey;
+    height: 100vh;
+  }
 </style>
