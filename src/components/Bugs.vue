@@ -1,7 +1,7 @@
 <template>
   <div class="backlog">
-    <h1 style="font-family: 'Poppins', sans-serif;"><b>BACKLOG</b></h1>
-    <table class="table table-dark table-hover" style="font-family: 'Sintony', sans-serif;">
+    <h1 style="font-family: 'Poppins', sans-serif; color: #3f7b70;"><b>BACKLOG</b></h1>
+    <table class="table table-dark table-hover" style="font-family: 'Sintony', sans-serif; background-color: #113c4a;">
       <thead>
         <tr>
           <th scope="col">#</th>

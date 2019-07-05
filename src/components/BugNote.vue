@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4">
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-2">
     <form>
       <div class="card">
         <div class="card-body">
@@ -8,7 +8,7 @@
           <p class="card-text">{{ note.flagged }}</p>
         </div>
         <div class="card-body">
-          <button class="btn btn-danger" @click="deleteNote(note)">Delete Note?</button>
+          <button class="btn btn-secondary" @click="deleteNote(note)">Delete Note?</button>
         </div>
       </div>
     </form>
@@ -34,4 +34,5 @@
 </script>
 
 <style scoped>
+
 </style>
