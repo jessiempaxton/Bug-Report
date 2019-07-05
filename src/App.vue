@@ -1,18 +1,23 @@
 <template>
   <div id="app">
-    <h1>BUG REPORT</h1>
+    <h1 style="font-family: 'Poppins', sans-serif;"><b>BUG REPORT</b></h1>
     <router-view />
   </div>
 </template>
 
-<style>
+<style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    background-color: darkgrey;
+    background-color: #dddddd;
+    /* width: 100vh; */
+  }
+
+  .h1 {
+    font-family:
   }
 
   #nav {

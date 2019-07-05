@@ -1,7 +1,7 @@
 <template>
   <div class="backlog">
-    <h1>Bug Backlog:</h1>
-    <table class="table table-dark table-hover">
+    <h1 style="font-family: 'Poppins', sans-serif;"><b>BACKLOG</b></h1>
+    <table class="table table-dark table-hover" style="font-family: 'Sintony', sans-serif;">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -14,25 +14,29 @@
       <tbody v-for="(bug, index) in bugs" :key="bug._id">
         <tr>
           <th scope="row">
-            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}" style="color: white">{{ index+1 }}
+            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}"
+              :class="[bug.closed ? 'darkgrey' : 'white']">{{ index+1 }}
             </router-link>
           </th>
           <td>
-            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}" style="color: white">{{ bug.title }}
+            <router-link :to=" {name: 'bugcloseup' , params: { id: bug._id }}"
+              :class="[bug.closed ? 'darkgrey' : 'white']">{{ bug.title }}
             </router-link>
           </td>
           </td>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}" style="color: white">{{ bug.creator }}
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"
+              :class="[bug.closed ? 'darkgrey' : 'white']">{{ bug.creator }}
             </router-link>
           </td>
           <td>
             <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"
-              :class="[bug.closed ? 'darkgrey' : 'green']" class="link">
+              :class="[bug.closed ? 'darkgrey' : 'white']">
               {{ bug.closed ? 'closed' : 'open' }}
             </router-link>
           <td>
-            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}" style="color: white">
+            <router-link :to="{name: 'bugcloseup', params: { id: bug._id }}"
+              :class="[bug.closed ? 'darkgrey' : 'white']">
               {{ new Date(bug.createdAt).toLocaleDateString() }}</router-link>
           </td>
         </tr>
@@ -63,11 +67,15 @@
     color: darkgrey;
   }
 
-  .green {
-    color: green;
+  .darkgrey:hover {
+    color: darkgrey;
   }
 
-  .link:hover {
+  .white {
+    color: white;
+  }
+
+  .white:hover {
     color: white;
   }
 </style>

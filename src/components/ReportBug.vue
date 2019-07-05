@@ -1,7 +1,8 @@
 <template>
   <div class="row">
     <div class="col">
-      <button class="btn btn-danger" data-toggle="modal" data-target="#bugModal">Report a
+      <button class="btn btn-danger" data-toggle="modal" data-target="#bugModal"
+        style="font-family: 'Sintony', sans-serif;">Report a
         Bug</button>
       <div class="modal fade" id="bugModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
